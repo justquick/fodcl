@@ -150,6 +150,8 @@ INSTALLED_APPS = APPS_CORE + \
     'fodcl.mail',
     'registration',
 )
+del INSTALLED_APPS[INSTALLED_APPS.index('synagg')]
+
 ACCOUNT_ACTIVATION_DAYS = 7
 
 
