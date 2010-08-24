@@ -109,7 +109,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-ROOT_URLCONF = 'fodcl.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     os.path.join(SVN_DIR,'templates'),
@@ -147,7 +147,7 @@ INSTALLED_APPS = APPS_CORE + \
     'django.contrib.admin',
     'django.contrib.flatpages',
     'django.contrib.markup',
-    'fodcl.mail',
+    'mail',
     'registration',
 )
 INSTALLED_APPS = list(INSTALLED_APPS)
