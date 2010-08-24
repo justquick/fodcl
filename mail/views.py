@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from fodcl.mail.models import Record,Survey,StreamWaderForm,SurveyForm
+from mail.models import Record,Survey,StreamWaderForm,SurveyForm
 from django.contrib.flatpages.views import flatpage
 
 def contact(request):

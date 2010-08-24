@@ -1,7 +1,7 @@
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
 from django.contrib import admin
-from fodcl.mail.models import Record,StreamWader,Survey
+from mail.models import Record,StreamWader,Survey
 
 class FlatPageAdmin(FlatPageAdminOld):
     class Media:
