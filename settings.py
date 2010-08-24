@@ -139,13 +139,13 @@ INSTALLED_APPS = APPS_CORE + \
 	    APPS_UTILS + \
 	    APPS_REGISTRATION + \
 	    APPS_TINYMCE + (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sitemaps',
-    'django.contrib.sites',
-    'django.contrib.admin',
-    'django.contrib.flatpages',
+    #'django.contrib.auth',
+    #'django.contrib.contenttypes',
+    #'django.contrib.sessions',
+    #'django.contrib.sitemaps',
+    #'django.contrib.sites',
+    #'django.contrib.admin',
+    #'django.contrib.flatpages',
     'django.contrib.markup',
     'mail',
     'registration',
