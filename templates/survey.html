@@ -1,0 +1,401 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui.js"></script>
+<LINK REL=StyleSheet HREF="{{ MEDIA_URL }}css/ui-lightness/style.css" TYPE="text/css" MEDIA=screen>
+<script type="text/javascript">
+	$(function() {
+		var $tabs = $("#tabs").tabs();
+		$('#gotopage2').click(function() { 
+			$tabs.tabs('select', 1);
+			return false;
+		});
+		$('#gotopage3').click(function() { 
+			$tabs.tabs('select', 2);
+			return false;
+		});
+		$('#gotopage4').click(function() { 
+			$tabs.tabs('select', 3);
+			return false;
+		});
+		$('#gotopage5').click(function() { 
+			$tabs.tabs('select', 4);
+			return false;
+		});
+		$('#gotopage6').click(function() { 
+			$tabs.tabs('select', 5);
+			return false;
+		});
+	});
+</script>
+
+<form method="POST">
+{% if form.errors %}
+<p>Please correct the following errors</p><ul>
+{% for field,error in form.errors.items %}
+	<li  class="errorlist">{{ field|title }}: {{ error }}</li>
+{% endfor %}</ul>
+{% endif %}
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Step1</a></li>
+		<li><a href="#tabs-2">Step2</a></li>
+		<li><a href="#tabs-3">Step3</a></li>
+		<li><a href="#tabs-4">Step4</a></li>
+		<li><a href="#tabs-5">Step5</a></li>
+		<li><a href="#tabs-6">LastStep</a></li>
+	</ul>
+	<div id="tabs-1">
+		<h3>We would like to start out with some general information about you.</h3>
+		<p>
+			<label for="id_first_name">First Name:</label>
+			{{ form.first_name }} {{ form.first_name.errors }}
+		</p>
+		<p>
+			<label for="id_last_name">Last Name:</label>
+			{{ form.last_name }} {{ form.last_name.errors }}
+		</p><hr />
+		<div class="address">
+			<h5>Lake Address</h5>
+			<p>
+				<label for="id_address1">Line 1:</label> 
+				{{ form.address1 }} {{ form.address1.errors }}
+			</p>
+			<p>
+				<label for="id_address2">Line 2:</label> 
+				{{ form.address2 }} {{ form.address2.errors }}
+			</p>
+			<div class="left">
+				<p>
+					<label for="id_city">City:</label> 
+					{{ form.city }} {{ form.city.errors }}
+				</p>
+			</div>
+			<div class="right">
+				<p>
+					<label for="id_state">State:</label> 
+					{{ form.state }} {{ form.state.errors }}
+				</p>
+			</div>
+			<p>
+				<label for="id_zipcode">Zipcode:</label> 
+				{{ form.zipcode }} {{ form.zipcode.errors }}
+			</p>
+		</div><hr />
+		<div class="address">
+			<h5>Mailing Address</h5>
+			<h6>(If same as above, leave blank)</h6>
+			<p>
+				<label for="id_maddress1">Line 1:</label> 
+				{{ form.maddress1 }} {{ form.maddress1.errors }}
+			</p>
+			<p>
+				<label for="id_maddress2">Line 2:</label> 
+				{{ form.maddress2 }} {{ form.maddress2.errors }}
+			</p>
+			<div class="left">
+				<p>
+					<label for="id_mcity">City:</label> 
+					{{ form.mcity }} {{ form.mcity.errors }}
+				</p>
+			</div>
+			<div class="right">
+				<p>
+					<label for="id_mstate">State:</label> 
+					{{ form.mstate }} {{ form.mstate.errors }}
+				</p>
+			</div>
+			<p>
+				<label for="id_mzipcode">Zipcode:</label> 
+				{{ form.mzipcode }} {{ form.mzipcode.errors }}
+			</p>
+		</div><hr />
+		<p>
+			<label for="id_phone">Phone:</label> 
+			{{ form.phone }} {{ form.phone.errors }}
+		</p>
+		<p>
+			<label for="id_email">Email:</label> 
+			{{ form.email }} {{ form.email.errors }}
+		</p><hr />
+		<p>
+			<label for="id_people_family">In general, how many people in your family use this property?</label> 
+			{{ form.people_family }} {{ form.people_family.errors }}
+		</p>
+		<p>
+			<label for="id_people_kids">How many children use this property?</label> 
+			{{ form.people_kids }} {{ form.people_kids.errors }}
+		</p><hr />
+		<div class="left">
+		<p>
+			<label for="id_full_time">Do you live at Deep Creek Lake full time?</label>
+			{{ form.full_time.errors }} 
+			{{ form.full_time }} 
+		</p>
+		</div>
+		<div class="right">
+		<p>
+			<label for="id_weeks_year">If no, approximately how many weeks in the year do you use your property?</label> 
+			{{ form.weeks_year }} {{ form.weeks_year.errors }}
+		</p>
+		</div>
+		<br /><br /><br /><br />
+		<p>
+			<label for="id_buy_down">Did you purchase the buy down?</label>
+			{{ form.buy_down.errors }} {{ form.buy_down }} 
+		</p><br /><br />
+		
+		<center><a id="gotopage2">Next Page</a></center>
+		
+	</div>
+	<div id="tabs-2">
+		<h3>Role of DNR Lake Management:</h3>
+		<p>
+		The State of Maryland owns the bottom of the lake, the buffer zone and is responsible for oversight of the buy down conservation easement. The Department of Natural Resources is responsible for Lake Management. This includes monitoring and taking action to preserve recreational use of the lake.
+		</p>
+		<div class="left">
+		<p>
+			<label for="id_dnr_dealings">Have you had dealings with DNR on the buffer zone or conservation easement?</label>
+			{{ form.dnr_dealings }} 
+			{{ form.dnr_dealings.errors }} 
+		</p>
+		</div>
+		<div class="right">
+		<p>
+			<label for="id_dnr_describe">If yes, please describe:</label> 
+			{{ form.dnr_describe }} {{ form.dnr_describe.errors }}
+		</p>
+		</div><br /><br /><br /><br /><br /><br /><br /><br /><hr />
+		<p>
+		        <label for="id_dnr_describe">How would you rate DNR lake management, on scale of 1 to 5 with 5 being the highest?</label>
+		        {{ form.dnr_rating }} {{ form.dnr_rating.errors }}
+		</p>
+		
+		<center><a id="gotopage3">Next Page</a></center>
+		
+	</div>
+	<div id="tabs-3">
+		<h3>We would like to ask some questions about your use of the lake.</h3>	
+		<p>
+		        <label for="id_dock_type">What type of dock do you have?</label>
+		        {{ form.dock_type }} {{ form.dock_type.errors }}
+		</p>
+		<p>
+			Did you know that the Lake Management budget comes only from the funds generated by our dock fees and a small amount from Wisp for use of the lake water; there are no additional funds from the State budget.
+		        {{ form.know_budget }}
+		        {{ form.know_budget.errors }}
+		</p><hr />
+		<div class="left">
+		<p>
+		        <label for="id_dock_in">When do you put your dock in?</label>
+		        {{ form.dock_in }} {{ form.dock_in.errors }}
+		</p>
+		</div>
+		<div class="right">
+		<p>
+		        <label for="id_dock_out">When do you take your dock out?</label>
+		        {{ form.dock_out }} {{ form.dock_out.errors }}
+		</p>
+		</div><br /><br /><br /><hr />
+		<div class="left">
+		<p>
+		        Would you support an increase in dock fees to get better services from DNR?
+			{{ form.increase_fees }}
+		        {{ form.increase_fees.errors }}
+		</p>
+		</div>
+		<div class="right">
+		<p>
+			<label for="id_how_much">If yes, how much?</label> 
+			{{ form.how_much }} {{ form.how_much.errors }}
+		</p>
+		</div><br /><br /><br /><br /><hr />
+		<h5>What kind of lake activities do you like to participate in?</h5>
+		<p>
+		        {{ form.activities_boating }}
+		        {{ form.activities_boating.errors }}
+			Boating / Jet Ski			
+		</p>
+		<p>
+		        {{ form.activities_sailing }}
+		        {{ form.activities_sailing.errors }}
+			Sailing			
+		</p>
+		<p>
+		        {{ form.activities_fishing }}
+		        {{ form.activities_fishing.errors }}
+			Fishing			
+		</p>
+		<p>
+		        {{ form.activities_swimming }}
+		        {{ form.activities_swimming.errors }}
+			Swimming			
+		</p>
+		<p>
+		        {{ form.activities_sports }}
+		        {{ form.activities_sports.errors }}
+			Water sports (skiing, tubing)			
+		</p>
+		<p>
+		        {{ form.activities_kayaking }}
+		        {{ form.activities_kayaking.errors }}
+			Kayaking / Canoeing			
+		</p>
+		<p>
+		        {{ form.activities_relaxing }}
+		        {{ form.activities_relaxing.errors }}
+			Relaxing on the Dock		
+		</p>
+		<h5>Which activities are you able to participate in all throughout the season? </h5>
+		<p>
+		        {{ form.activities_boating2 }}
+		        {{ form.activities_boating2.errors }}
+			Boating / Jet Ski			
+		</p>
+		<p>
+		        {{ form.activities_sailing2 }}
+		        {{ form.activities_sailing2.errors }}
+			Sailing			
+		</p>
+		<p>
+		        {{ form.activities_fishing2 }}
+		        {{ form.activities_fishing2.errors }}
+			Fishing			
+		</p>
+		<p>
+		        {{ form.activities_swimming2 }}
+		        {{ form.activities_swimming2.errors }}
+			Swimming			
+		</p>
+		<p>
+		        {{ form.activities_sports2 }}
+		        {{ form.activities_sports2.errors }}
+			Water sports (skiing, tubing)			
+		</p>
+		<p>
+		        {{ form.activities_kayaking2 }}
+		        {{ form.activities_kayaking2.errors }}
+			Kayaking / Canoeing			
+		</p>
+		<p>
+		        {{ form.activities_relaxing2 }}
+		        {{ form.activities_relaxing2.errors }}
+			Relaxing on the Dock		
+		</p><br /><br />
+		
+		<center><a id="gotopage4">Next Page</a></center>
+		
+	</div>
+	<div id="tabs-4">
+		<h3>What changes have you noticed over the time you have owned the property?</h3>
+		<p>
+			<label for="id_change_quality">Changes in water quality:</label> 
+			{{ form.change_quality }} {{ form.change_quality.errors }}
+		</p>
+		<p>
+			<label for="id_change_shoreline">Changes in shoreline:</label> 
+			{{ form.change_shoreline }} {{ form.change_quality.errors }}
+		</p>
+		<p>
+			<label for="id_change_weeds">Growth of weed:</label> 
+			{{ form.change_weeds }} {{ form.change_quality.errors }}
+		</p>
+		<p>
+			<label for="id_change_other">Other:</label> 
+			{{ form.change_other }} {{ form.change_quality.errors }}
+		</p><br /><br />
+		
+		<center><a id="gotopage5">Next Page</a></center>
+		
+	</div>
+	<div id="tabs-5">
+		<h3>Discovery Center</h3>
+		<p>
+			Are you aware that our dock fees pay for the programs at the Discovery Center?
+			{{ form.discovery_aware }}
+		        {{ form.discovery_aware.errors }}
+		</p><br />
+		<div class="left">
+		<p>
+			Have you ever attended one of these programs?
+			{{ form.discovery_attend }}
+		        {{ form.discovery_attend.errors }}
+		</p>
+		</div>
+		<div class="right">
+			<p>
+				<label for="id_discovery_attend_often">If yes, how many times a year do you attend?</label> 
+				{{ form.discovery_attend_often }} {{ form.discovery_attend_often.errors }}
+			</p>
+			<p>
+		        	<label for="id_discovery_rating">If yes, how would you rate the program on a scale of 1 to 5 with 5 being the highest?</label>
+		        	{{ form.discovery_rating }} {{ form.discovery_rating.errors }}
+			</p>
+		</div><br /><br /><br /><br /><br /><br /><br /><br />
+		<p>
+			Should fees from dock permits be used to support these activities? 
+			{{ form.discovery_fees }}
+		        {{ form.discovery_fees.errors }}
+		</p>
+		<br /><br /><br />
+		<h3>Property Owners Association</h3>
+		<p>
+			Are you a member of the Property Owners Association? 
+			{{ form.POA_member }}
+		        {{ form.POA_member.errors }}
+		</p><br />
+		<div class="left">
+		<p>
+			Have you ever attended a Property Owners Association general meeting?
+			{{ form.POA_meeting }}
+		        {{ form.POA_meeting.errors }}
+		</p>
+		</div>
+		<div class="right">
+		<p>
+			If yes, was the meeting interesting/useful?
+			{{ form.POA_meeting_useful }}
+		        {{ form.POA_meeting_useful.errors }}
+		</p>
+		</div><br /><br /><br /><br /><br />
+		<p>
+		        <label for="id_dnr_describe">How would you rate the POA on scale of 1 to 5 with 5 being the highest?</label>
+		        {{ form.POA_rating }} {{ form.POA_rating.errors }}
+		</p><br /><br />
+		
+		<center><a id="gotopage6">Next Page</a></center>
+	</div>
+	<div id="tabs-6">
+		<h3>Policy Review Board</h3>
+		<p>
+			Have you heard of the Policy Review Board? Do you know what they do? 
+			{{ form.PRB_know }}
+		        {{ form.PRB_know.errors }}
+		</p>
+		<p>The Policy Review Board meets for 2 hours, 4 times a year to supervise the future of the lake. Members consist of Governer appointed representatives of different groups with an interest in the future of the lake, such as the Property Owners Association, and commercial interests in the area. The DNR Lake Management team reports to this Board, and follows their recommendations.</p>
+		<p>
+		       	<label for="id_PRB_rating">How would you rate the PRB's effectiveness at supervising Lake Management and growth on a scale of 1 to 5 with 5 being the highest?</label>
+	        	{{ form.PRB_rating }} {{ form.PRB_rating.errors }}
+		</p><br /><br /><hr /><br /><br />
+		<p>
+			<label for="id_fodcl_do">What should Friends of DCL do to help protect the lake?</label> 
+			{{ form.fodcl_do }} {{ form.fodcl_do.errors }}
+		</p>
+		<p>
+			<label for="id_other_comments">Other comments?</label> 
+			{{ form.other_comments }} {{ form.other_comments.errors }}
+		</p>
+		<br /><hr /><br />
+		<center>
+		<input type="reset" value="Reset" />
+		<input type="submit" value="Submit" />
+		</center>
+	</div>
+	</form>
+		<center><a href="#tabs">Back to top</a></center>
+</div>
+
+
+{% endblock %}

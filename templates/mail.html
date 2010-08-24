@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+table {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 2px;
+	border-style: dotted dotted dotted dotted;
+	border-color: gray gray gray gray;
+	border-collapse: collapse;
+	background-color: rgb(255, 255, 240);
+}
+table th {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: dotted dotted dotted dotted;
+	border-color: gray gray gray gray;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+table td {
+	border-width: 1px 1px 1px 1px;
+	padding: 1px 1px 1px 1px;
+	border-style: dotted dotted dotted dotted;
+	border-color: gray gray gray gray;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+</style>
+{% if records %}
+<table border=1>
+	<tr>
+		<th>Name</th>
+		<th>Lake Addr</th>
+		<th>Home Addr</th>
+		<th>Email</th>
+	</tr>
+	{% for record in records %}
+	<tr>
+		<td>{{ record.name }}</td>
+		<td>{{ record.lake_addr }}</td>
+		<td>{{ record.home_addr }}</td>
+		<td>{{ record.email }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endif %}
+
+<br><hr>
+<form method="post" action="/contact/"> 
+Name<input name="name" type="text"><br>
+Address in Garrett County<input name="lake_addr" size="45" type="text"><br>
+Permanent Address<input name="home_addr" size="45" type="text"><br>
+Email address<input name="email" type="text"><br>
+
+ <input value="NEW" type="submit">
+ </form>
+
+{% endblock %}

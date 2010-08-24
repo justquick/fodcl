@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% comment %}
+{% block head %}
+<script type="text/javascript" src="/media/jquery-1.2.1.js"></script>
+{% get_free_threaded_comment_form as commentform %}
+<script type="text/javascript">
+function show_reply_form(comment_id, url, person_name, form) {
+    var comment_reply = $('#' + comment_id);
+    var to_add = $( new Array(
+    '<div class="response"><blockquote><p>Reply to ' + person_name + ':</p>',
+    '<form method="POST" action="' + url + '">',
+      '{{ commentform.as_p|oneline }}',
+    '<p><input type="submit" value="Submit Comment" /></p>',
+     '</form></blockquote></div>').join(''));
+    to_add.css("display", "none");
+    comment_reply.after(to_add);
+    to_add.slideDown(function() {
+        comment_reply.replaceWith(new Array('<a id="',
+        comment_id,'" href="javascript:hide_reply_form(\'',
+        comment_id, '\',\'', url, '\',\'', person_name,
+        '\')">Stop Replying</a>').join(''));
+    });
+}
+function hide_reply_form(comment_id, url, person_name) {
+    var comment_reply = $('#' + comment_id);
+    comment_reply.next().slideUp(function (){
+        comment_reply.next('.response').remove();
+        comment_reply.replaceWith(new Array('<a id="',
+        comment_id,'" href="javascript:show_reply_form(\'',
+        comment_id, '\',\'', url, '\',\'', person_name,
+        '\')">Reply</a>').join(''));
+    });
+}
+</script>
+{% endblock %}
+{% endcomment %}
+
+{% block content %}
+{{ flatpage.content }}
+
+{% comment %}
+	<h3>Comments on This Article:</h3>
+	{% get_free_threaded_comment_tree for flatpage as tree %}
+	{% get_free_threaded_comment_form as commentform %}
+	{% for comment in tree %}
+	    <div style="margin-left: {{ comment.depth }}em;" class="comment">
+	        <a href="{{ comment.website }}">{{ comment.name }}</a> said:<br/>
+	        {% auto_transform_markup comment %}
+	        <a id="c{{ comment.id }}" href="javascript:show_reply_form('c{{ comment.id }}','{% get_free_comment_url flatpage comment %}','{{ comment.name }}')">Reply</a>
+	    </div>
+	{% endfor %}
+	<p>Reply to Original:</p>
+	<form method="POST" action="{% get_free_comment_url flatpage %}">
+	        {{ commentform.as_p }}
+	        <p><input type="submit" class="button" value="Submit Comment" /></p>
+	</form>
+{% endcomment %}
+{% endblock %}

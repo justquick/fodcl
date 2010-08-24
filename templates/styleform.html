@@ -1,0 +1,22 @@
+<form id="filter_form" name="filter_form" method="get" action="{{ request.path }}">
+  <p style="margin-top: 0pt;"><label for="style">Use this style:</label>  
+    <select onchange="document.forms.filter_form.submit()" name="style" id="style">
+      <option {% ifequal request.GET.style 'default' %}selected="selected"{% endifequal %} value="default">default</option>
+      <option {% ifequal request.GET.style 'manni' %}selected="selected"{% endifequal %} value="manni">manni</option>
+      <option {% ifequal request.GET.style 'perldoc' %}selected="selected"{% endifequal %} value="perldoc">perldoc</option>
+      <option {% ifequal request.GET.style 'borland' %}selected="selected"{% endifequal %} value="borland">borland</option>
+      <option {% ifequal request.GET.style 'colorful' %}selected="selected"{% endifequal %} value="colorful">colorful</option>
+      <option {% ifequal request.GET.style 'murphy' %}selected="selected"{% endifequal %} value="murphy">murphy</option>
+      <option {% ifequal request.GET.style 'vs' %}selected="selected"{% endifequal %} value="vs">vs</option>
+      <option {% ifequal request.GET.style 'trac' %}selected="selected"{% endifequal %} value="trac">trac</option>
+      <option {% ifequal request.GET.style 'tango' %}selected="selected"{% endifequal %} value="tango">tango</option>
+      <option {% ifequal request.GET.style 'fruity' %}selected="selected"{% endifequal %} value="fruity">fruity</option>
+      <option {% ifequal request.GET.style 'autumn' %}selected="selected"{% endifequal %} value="autumn">autumn</option>
+      <option {% ifequal request.GET.style 'bw' %}selected="selected"{% endifequal %} value="bw">bw</option>
+      <option {% ifequal request.GET.style 'emacs' %}selected="selected"{% endifequal %} value="emacs">emacs</option>
+      <option {% ifequal request.GET.style 'pastie' %}selected="selected"{% endifequal %} value="pastie">pastie</option>
+      <option {% ifequal request.GET.style 'friendly' %}selected="selected"{% endifequal %} value="friendly">friendly</option>
+      <option {% ifequal request.GET.style 'native' %}selected="selected"{% endifequal %} value="native">native</option>
+    </select>  
+  </p>
+</form>

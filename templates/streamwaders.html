@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Stream Waders Registration Form</h2>
+<form method="POST">
+<p>
+    {{ form.name.errors }}
+    <label for="id_name">Your Name:</label>
+    {{ form.name }}
+</p>
+<p>{{ form.address.errors }}<label for="id_address">Address:</label> {{ form.address }}</p>
+<p>{{ form.phone1.errors }}<label for="id_phone1">Primary Phone:</label> {{ form.phone1 }} </p>
+<p>{{ form.phone2.errors }}<label for="id_phone2">Secondary Phone:</label> {{ form.phone2 }} </p>
+
+<p>{{ form.contact.errors }}<label for="id_contact">How best to contact you:</label> {{ form.contact }} </p>
+<p>{{ form.is_participating.errors }} {{ form.is_participating }} Yes I want to participate in the Stream Waders tributary assessment the beginning of April.</p>
+<ul><li>April 4,5,6 and 7</li><li>April 10 and 11</li><li>April 17 and 18</li></ul>
+<p>{{ form.best_dates.errors }}<label for="id_best_dates"> Which would you like to attend?</label> {{ form.best_dates }} </p>
+<p>{{ form.stream.errors }}<label for="id_stream">Is there a particular stream which feeds DCL which you would like to study</label>  {{ form.stream }} </p>
+<p>{{ form.has_gps.errors }} {{ form.has_gps }}<label for="id_has_gps">I can contribute a mobile GPS to mark our locations</label> </p>
+<p>{{ form.has_camera.errors }} {{ form.has_camera }} <label for="id_has_camera">I can contribute a camera to record our work</label> </p>
+
+<p>{{ form.has_boots.errors }} {{ form.has_boots }}  I have an extra pair of wading boots to lend</p>
+<p>{{ form.can_lead.errors }} {{ form.can_lead }} I am willing to lead a group of high school students</p>
+<p>We need volunteers in March to obtain permission to cross private lands which abut the streams. We can tell you what we need. Would you be willing to help to obtain these permissions?</p>
+<p>{{ form.can_volunteer.errors }} {{ form.can_volunteer }} Yes</p>
+
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}
